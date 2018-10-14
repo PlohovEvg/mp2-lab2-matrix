@@ -165,7 +165,7 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 		return *this;
 	}
 
-	delete[]pVector;
+	delete[] pVector;
 	
 	Size = v.Size;
 	StartIndex = v.StartIndex;
@@ -376,12 +376,13 @@ TMatrix<ValType>& TMatrix<ValType>::operator=(const TMatrix<ValType> &mt)
 	}
 
 	delete[] pVector;
+
 	Size = mt.Size;
-	StartIndex = mt.StartIndex;
+	pVector = new TVector<ValType>[Size];
 
 	for (int i = 0; i < Size; i++)
 	{
-		pVector[i] = TVector<ValType>(mt.pVector[i]);
+		pVector[i] = mt.pVector[i];
 	}
 
 	return *this;
@@ -420,7 +421,7 @@ TMatrix<ValType> TMatrix<ValType>::operator-(const TMatrix<ValType> &mt)
 		res.pVector[i] = pVector[i] - mt.pVector[i];
 	}
 
-	retrun res;
+	return res;
 } /*-------------------------------------------------------------------------*/
 
 // TVector О3 Л2 П4 С6
